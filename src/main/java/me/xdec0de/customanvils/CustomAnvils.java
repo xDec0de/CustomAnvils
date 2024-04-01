@@ -2,6 +2,7 @@ package me.xdec0de.customanvils;
 
 import javax.annotation.Nonnull;
 
+import me.xdec0de.customanvils.cmd.CustomAnvilsCmd;
 import net.codersky.mcutils.MCPlugin;
 
 public class CustomAnvils extends MCPlugin {
@@ -12,11 +13,7 @@ public class CustomAnvils extends MCPlugin {
 	public void onEnable() {
 		registerFile(cfg);
 		registerEvents(new AnvilHandler(this));
-	}
-
-	@Override
-	public void onDisable() {
-		
+		registerCommand(new CustomAnvilsCmd(this));
 	}
 
 	@Nonnull

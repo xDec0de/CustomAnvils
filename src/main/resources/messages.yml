@@ -1,0 +1,24 @@
+# |-------------------------------------------------------------------------| #
+# | #                                                                     # | #
+# | #                -----------------------------------                  # | #
+# | #                | CustomAnvils v${project.version} by xDec0de_ |                  # | #
+# | #                -----------------------------------                  # | #
+# | #                                                                     # | #
+# |-------------------------------------------------------------------------| #
+#                                                                             #
+#                        This plugin uses MCUtils                             #
+#      Read about all the features added to this messages on the guide!       #
+#                                                                             #
+#                       https://mcutils.codersky.net                          #
+#                                                                             #
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+info: |
+  &8&m                            &r
+  &bCustomAnvils v%version%
+  &7Free plugin by &exDec0de_
+  &8&m                            &r
+noPerm: "&8&l[&c&l!&8&l] &cYou don't have permission to use this command&8."
+reload:
+  err: "&8&l[&c&l!&8&l] &e%errors% &cfiles failed to reload, please check the server console&8."
+  ok: "&e&lCustom&6&lAnvils &8| &7Plugin reloaded successfully&8."
