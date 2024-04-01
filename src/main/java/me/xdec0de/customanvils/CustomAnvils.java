@@ -17,12 +17,39 @@ public class CustomAnvils extends MCPlugin {
 	public void onEnable() {
 		registerFile(cfg);
 		registerFile(msg);
-		update();
-		if (!validateCredits())
+		if (!validateCredits()) {
 			Bukkit.getPluginManager().disablePlugin(this);
+			return;
+		}
 		registerEvents(new AnvilHandler(this));
 		registerCommand(new CustomAnvilsCmd(this));
-		
+		logCol(	" ",
+				"&8|------------------------------------------>",
+				" ",
+				"          &eCustomAnvils &8- &aEnabled",
+				" ",
+				"  &b- &7Author&8: &bxDec0de_",
+				" ",
+				"  &b- &7Version&8: &b" + getDescription().getVersion(),
+				" ",
+				"&8|------------------------------------------>",
+				" ");
+		update();
+	}
+
+	@Override
+	public void onDisable() {
+		logCol(	" ",
+				"&8|------------------------------------------>",
+				" ",
+				"          &eCustomAnvils &8- &cDisabled",
+				" ",
+				"  &b- &7Author&8: &bxDec0de_",
+				" ",
+				"  &b- &7Version&8: &b" + getDescription().getVersion(),
+				" ",
+				"&8|------------------------------------------>",
+				" ");
 	}
 
 	@Nonnull
