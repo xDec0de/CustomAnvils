@@ -1,11 +1,12 @@
 package me.xdec0de.customanvils;
 
+import javax.annotation.Nonnull;
+
 import net.codersky.mcutils.MCPlugin;
-import net.codersky.mcutils.files.yaml.PluginFile;
 
 public class CustomAnvils extends MCPlugin {
 
-	private final PluginFile cfg = new PluginFile(this, "config.yml");
+	private final CAConfig cfg = new CAConfig(this);
 
 	@Override
 	public void onEnable() {
@@ -16,5 +17,11 @@ public class CustomAnvils extends MCPlugin {
 	@Override
 	public void onDisable() {
 		
+	}
+
+	@Nonnull
+	@Override
+	public CAConfig getConfig() {
+		return cfg;
 	}
 }
