@@ -45,6 +45,6 @@ public class CAConfig extends PluginFile {
 			if (enchData[0].equalsIgnoreCase(enchName))
 				return Integer.valueOf(enchData[1]);
 		}
-		return ench.getMaxLevel();
+		return getAllowUnsafeEnchants() ? Integer.MAX_VALUE : ench.getMaxLevel();
 	}
 }
