@@ -5,18 +5,18 @@ import java.util.List;
 import org.bukkit.command.CommandSender;
 
 import me.xdec0de.customanvils.CustomAnvils;
-import net.codersky.mcutils.general.MCCommand;
+import me.xdec0de.customanvils.cmd.base.CustomAnvilsCommand;
 
-public class CustomAnvilsCmd extends MCCommand<CustomAnvils> {
+public class MainCmd extends CustomAnvilsCommand {
 
-	public CustomAnvilsCmd(CustomAnvils plugin) {
+	public MainCmd(CustomAnvils plugin) {
 		super(plugin, "customanvils");
-		inject(0, new Reload(plugin));
+		inject(0, new ReloadCmd(plugin));
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, String[] args) {
-		return getPlugin().getMessages().send(sender, "info", "%version%", getPlugin().getDescription().getVersion());
+		return getMessages().send(sender, "info", "%version%", getPlugin().getDescription().getVersion());
 	}
 
 	@Override public List<String> onTab(CommandSender sender, String[] args) { return null; }

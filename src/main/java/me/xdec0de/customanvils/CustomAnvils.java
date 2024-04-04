@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 
 import org.bukkit.Bukkit;
 
-import me.xdec0de.customanvils.cmd.CustomAnvilsCmd;
+import me.xdec0de.customanvils.cmd.MainCmd;
 import net.codersky.mcutils.MCPlugin;
 import net.codersky.mcutils.files.yaml.MessagesFile;
 
@@ -17,12 +17,13 @@ public class CustomAnvils extends MCPlugin {
 	public void onEnable() {
 		registerFile(cfg);
 		registerFile(msg);
+		reloadFiles();
 		if (!validateCredits()) {
 			Bukkit.getPluginManager().disablePlugin(this);
 			return;
 		}
 		registerEvents(new AnvilHandler(this));
-		registerCommand(new CustomAnvilsCmd(this));
+		registerCommand(new MainCmd(this));
 		logCol(	" ",
 				"&8|------------------------------------------>",
 				" ",
