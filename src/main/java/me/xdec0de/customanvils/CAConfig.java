@@ -18,6 +18,10 @@ public class CAConfig extends PluginFile {
 
 	// Methods by order of appearance on config.yml //
 
+	public boolean getColoredItemNames() {
+		return getBoolean("coloredItemNames", false);
+	}
+
 	@Nonnegative
 	public int getMaxRepairCost() {
 		final int max = getInt("repairCost.max", 40);
