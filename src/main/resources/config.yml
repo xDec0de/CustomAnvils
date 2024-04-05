@@ -6,7 +6,9 @@
 # | #                                                                    # | #
 # |------------------------------------------------------------------------| #
 
-coloredItemNames: false
+coloredItemNames:
+  usePerm: true
+  enabled: false
 repairCost:
   max: 40
   limit: -1

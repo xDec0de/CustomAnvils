@@ -35,10 +35,12 @@ public class AnvilHandler extends PluginListener<CustomAnvils> {
 	// Apply color to item names //
 
 	private void checkNameColor(final PrepareAnvilEvent e) {
-		if (!getConfig().getColoredItemNames())
+		if (!getConfig().isColoredItemNamesEnabled())
 			return;
 		final ItemStack result = e.getResult();
-		if (!result.hasItemMeta() || !result.getItemMeta().hasDisplayName() || !checkPermission(e.getViewers(), "customanvils.colorednames"))
+		if (!result.hasItemMeta() || !result.getItemMeta().hasDisplayName())
+			return;
+		if (getConfig().useColoredItemNamesPerm() && !checkPermission(e.getViewers(), "customanvils.colorednames"))
 			return;
 		final ItemMeta resultMeta = result.getItemMeta();
 		resultMeta.setDisplayName(MCStrings.applyColor(resultMeta.getDisplayName()));

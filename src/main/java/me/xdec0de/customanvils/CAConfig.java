@@ -18,8 +18,12 @@ public class CAConfig extends PluginFile {
 
 	// Methods by order of appearance on config.yml //
 
-	public boolean getColoredItemNames() {
-		return getBoolean("coloredItemNames", false);
+	public boolean useColoredItemNamesPerm() {
+		return getBoolean("coloredItemNames.usePerm", true);
+	}
+
+	public boolean isColoredItemNamesEnabled() {
+		return getBoolean("coloredItemNames.enabled", false);
 	}
 
 	@Nonnegative
