@@ -52,18 +52,18 @@ public class AnvilHandler extends PluginListener<CustomAnvils> {
 
 	private void checkRepairCost(final AnvilInventory inv) {
 		final int limit = getConfig().getRepairCostLimit();
-		inv.setMaximumRepairCost(getConfig().getMaxRepairCost());
 		if (limit > -1 && inv.getRepairCost() > limit)
 			inv.setRepairCost(limit);
+		inv.setMaximumRepairCost(getConfig().getMaxRepairCost());
 	}
 
 	// Unsafe enchants //
 
 	private void checkUnsafeEnchants(final PrepareAnvilEvent e) {
-		if (!getConfig().getBoolean("unsafeEnchants.allow"))
+		if (!getConfig().getAllowUnsafeEnchants())
 			removeUnsafeEnchants(e);
 		else
-			joinUnsafeEnchants(e, getConfig().getBoolean("unsafeEnchants.upgrade.enabled"));
+			joinUnsafeEnchants(e, getConfig().getUpgradeEnchants());
 	}
 
 	private void removeUnsafeEnchants(final PrepareAnvilEvent e) {
