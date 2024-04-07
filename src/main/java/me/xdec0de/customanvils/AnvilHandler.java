@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Predicate;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -25,7 +29,7 @@ public class AnvilHandler extends PluginListener<CustomAnvils> {
 
 	@EventHandler
 	public void onPrepare(final PrepareAnvilEvent e) {
-		if (e.getResult() == null || e.getResult().getType() == Material.AIR)
+		if (!isValidItem(e.getResult()))
 			return;
 		checkNameColor(e);
 		checkRepairCost(e.getInventory());
@@ -38,7 +42,7 @@ public class AnvilHandler extends PluginListener<CustomAnvils> {
 		if (!getConfig().isColoredItemNamesEnabled())
 			return;
 		final ItemStack result = e.getResult();
-		if (!result.hasItemMeta() || !result.getItemMeta().hasDisplayName())
+		if (!hasValidMeta(result, meta -> meta.hasDisplayName()))
 			return;
 		if (getConfig().useColoredItemNamesPerm() && !checkPermission(e.getViewers(), "customanvils.colorednames"))
 			return;
@@ -75,11 +79,10 @@ public class AnvilHandler extends PluginListener<CustomAnvils> {
 	}
 
 	private void joinUnsafeEnchants(final PrepareAnvilEvent e, boolean upgrade) {
-		final ItemStack first = e.getInventory().getItem(0);
 		final ItemStack second = e.getInventory().getItem(1);
-		if (first == null || second == null)
+		if (!isValidItem(second))
 			return;
-		final Map<Enchantment, Integer> enchantments = new HashMap<>(first.getEnchantments());
+		final Map<Enchantment, Integer> enchantments = new HashMap<>(second.getEnchantments());
 		for (final Entry<Enchantment, Integer> enchant : enchantments.entrySet()) {
 			final int max = getConfig().getMaxLevel(enchant.getKey());
 			int lvl = enchantments.getOrDefault(enchant.getKey(), 0);
@@ -106,5 +109,13 @@ public class AnvilHandler extends PluginListener<CustomAnvils> {
 			if (!viewer.hasPermission(permission))
 				return false;
 		return true;
+	}
+
+	private boolean isValidItem(@Nullable final ItemStack item) {
+		return item != null && item.getType() != Material.AIR;
+	}
+
+	private boolean hasValidMeta(@Nonnull final ItemStack item, @Nonnull final Predicate<ItemMeta> metaRequirements) {
+		return item.hasItemMeta() ? metaRequirements.test(item.getItemMeta()) : false;
 	}
 }
