@@ -67,7 +67,7 @@ public class AnvilHandler extends PluginListener<CustomAnvils> {
 		if (!getConfig().getAllowUnsafeEnchants())
 			removeUnsafeEnchants(e);
 		else
-			joinUnsafeEnchants(e, getConfig().getUpgradeEnchants());
+			joinUnsafeEnchants(e, getConfig().getUpgradeUnsafeEnchants());
 	}
 
 	private void removeUnsafeEnchants(final PrepareAnvilEvent e) {
@@ -80,16 +80,17 @@ public class AnvilHandler extends PluginListener<CustomAnvils> {
 
 	private void joinUnsafeEnchants(final PrepareAnvilEvent e, boolean upgrade) {
 		final ItemStack second = e.getInventory().getItem(1);
-		if (!isValidItem(second))
+		if (!isValidItem(second) || second.getEnchantments().isEmpty())
 			return;
 		final Map<Enchantment, Integer> enchantments = new HashMap<>(second.getEnchantments());
 		for (final Entry<Enchantment, Integer> enchant : enchantments.entrySet()) {
 			final int max = getConfig().getMaxLevel(enchant.getKey());
+			final int current = enchant.getValue();
 			int lvl = enchantments.getOrDefault(enchant.getKey(), 0);
-			if (enchant.getValue() == lvl && upgrade)
+			if (current == lvl && (upgrade || lvl < enchant.getKey().getMaxLevel()))
 				lvl++;
-			else if (lvl < enchant.getValue())
-				lvl = enchant.getValue();
+			else if (lvl < current)
+				lvl = current;
 			enchantments.put(enchant.getKey(), lvl > max ? max : lvl);
 		}
 		e.getResult().addUnsafeEnchantments(enchantments);

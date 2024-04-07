@@ -40,7 +40,7 @@ public class CAConfig extends PluginFile {
 		return getBoolean("unsafeEnchants.allow", false);
 	}
 
-	public boolean getUpgradeEnchants() {
+	public boolean getUpgradeUnsafeEnchants() {
 		return getBoolean("unsafeEnchants.upgrade.enabled", false);
 	}
 
