@@ -13,11 +13,11 @@
 #                                                                             #
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-info: |
-  &8&m                            &r
+info: |-
+  &8&m                                     &r
   &bCustomAnvils v%version%
   &7Free plugin by &exDec0de_
-  &8&m                            &r
+  &8&m                                     &r
 noPerm: "&8&l[&c&l!&8&l] &cYou don't have permission to use this command&8."
 reload:
   err: "&8&l[&c&l!&8&l] &e%errors% &cfiles failed to reload, please check the server console&8."
