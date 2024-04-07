@@ -4,7 +4,7 @@
 	<groupId>me.xdec0de</groupId>
 	<artifactId>CustomAnvils</artifactId>
 	
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>CustomAnvils</name>
 	<description>A simple plugin that allows you to customize anvil behavior.</description>
 
