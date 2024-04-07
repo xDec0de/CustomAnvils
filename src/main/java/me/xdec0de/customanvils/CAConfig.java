@@ -46,6 +46,8 @@ public class CAConfig extends PluginFile {
 
 	@Positive
 	public int getMaxLevel(@Nonnull Enchantment ench) {
+		if (!getAllowUnsafeEnchants())
+			return ench.getMaxLevel();
 		final List<String> limits = getStringList("unsafeEnchants.upgrade.limits");
 		final String enchName = ench.getKey().getKey();
 		for (final String lvlLimit : limits) {
@@ -53,6 +55,6 @@ public class CAConfig extends PluginFile {
 			if (enchData[0].equalsIgnoreCase(enchName))
 				return Integer.valueOf(enchData[1]);
 		}
-		return getAllowUnsafeEnchants() ? Integer.MAX_VALUE : ench.getMaxLevel();
+		return Integer.MAX_VALUE;
 	}
 }
