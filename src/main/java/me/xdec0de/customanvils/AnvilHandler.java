@@ -71,7 +71,7 @@ public class AnvilHandler extends PluginListener<CustomAnvils> {
 	}
 
 	private void removeUnsafeEnchants(final PrepareAnvilEvent e) {
-		final Map<Enchantment, Integer> enchantments = e.getResult().getEnchantments();
+		final Map<Enchantment, Integer> enchantments = new HashMap<>(e.getResult().getEnchantments());
 		for (final Entry<Enchantment, Integer> enchant : enchantments.entrySet())
 			if (enchant.getValue() > enchant.getKey().getMaxLevel())
 				enchant.setValue(enchant.getKey().getMaxLevel());
