@@ -22,3 +22,34 @@ noPerm: "&8&l[&c&l!&8&l] &cYou don't have permission to use this command&8."
 reload:
   err: "&8&l[&c&l!&8&l] &e%errors% &cfiles failed to reload, please check the server console&8."
   ok: "&e&lCustom&6&lAnvils &8| &7Plugin reloaded successfully&8."
+updater:
+  available:
+updater:
+  error:
+    player: |
+      %error% An error occurred while checking for &6CustomAnvils &cupdates&8.
+      &e   - &7Please check Spigot's API status before reporting this&8.
+    console:
+    - "&8|------------------------------------------>"
+    - "&e        CustomAnvils &7update checker"
+    - "&b- &cAn error occurred while getting the latest version."
+    - "&7Please check Spigot's API status before reporting this&8."
+    - "&8|------------------------------------------>"
+  available:
+    player: |-
+      &e&lCustom&6&lAnvils &8| A new version &8(&6v%latest%&8) &7is available, using&8: &cv%current%&7.
+      &b   - &7Download link&8: &9%link%
+    console:
+    - "&8|------------------------------------------>"
+    - "&e        CustomAnvils &7update checker"
+    - "&b- &7A new version is available&8: &ev%latest%"
+    - "&b- &7Currently using&8: &cv%current%"
+    - "&b- &7Download link&8: &9%link%"
+    - "&8|------------------------------------------>"
+  latest:
+    player: "%prefix% You are running the latest version."
+    console:
+    - "&8|------------------------------------------>"
+    - "&e        CustomAnvils &7update checker"
+    - "&b- &7You are running the latest version."
+    - "&8|------------------------------------------>"

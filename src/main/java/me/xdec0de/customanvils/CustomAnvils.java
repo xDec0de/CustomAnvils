@@ -22,7 +22,8 @@ public class CustomAnvils extends MCPlugin {
 			Bukkit.getPluginManager().disablePlugin(this);
 			return;
 		}
-		registerEvents(new AnvilHandler(this));
+		final UpdateChecker updateChecker = new UpdateChecker(this);
+		registerEvents(new AnvilHandler(this), updateChecker);
 		registerCommand(new MainCmd(this));
 		logCol(	" ",
 				"&8|------------------------------------------>",
@@ -36,6 +37,7 @@ public class CustomAnvils extends MCPlugin {
 				"&8|------------------------------------------>",
 				" ");
 		update();
+		updateChecker.checkUpdates(Bukkit.getConsoleSender());
 	}
 
 	@Override
