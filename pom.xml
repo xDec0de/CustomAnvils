@@ -42,14 +42,20 @@
 	</dependencies>
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.5.0</version>
+				<version>3.5.2</version>
 				<configuration>
 					<minimizeJar>true</minimizeJar>
+					<finalName>${project.name} [${project.version}]</finalName>
 					<relocations>
 						<relocation>
 							<pattern>net.codersky.mcutils</pattern>
@@ -67,18 +73,12 @@
 				</executions>
 			</plugin>
 			<plugin>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>3.10.1</version>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
 				<configuration>
 					<release>17</release>
 				</configuration>
 			</plugin>
 		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
 	</build>
 </project>
